@@ -9,17 +9,17 @@ import java.util.Objects;
  * DTO for {@link com.personal.mp.sakilarestapi.model.Film}
  */
 public class FilmDto implements Serializable {
-    private final Integer id;
-    private final String title;
-    private final String description;
-    private final Integer releaseYear;
-    private final Short rentalDuration;
-    private final BigDecimal rentalRate;
-    private final Integer length;
-    private final BigDecimal replacementCost;
-    private final String rating;
-    private final String specialFeatures;
-    private final Instant lastUpdate;
+    private Integer id;
+    private String title;
+    private String description;
+    private Integer releaseYear;
+    private Short rentalDuration;
+    private BigDecimal rentalRate;
+    private Integer length;
+    private BigDecimal replacementCost;
+    private String rating;
+    private String specialFeatures;
+    private Instant lastUpdate;
 
     public FilmDto(Integer id, String title, String description, Integer releaseYear, Short rentalDuration, BigDecimal rentalRate, Integer length, BigDecimal replacementCost, String rating, String specialFeatures, Instant lastUpdate) {
         this.id = id;
@@ -32,6 +32,50 @@ public class FilmDto implements Serializable {
         this.replacementCost = replacementCost;
         this.rating = rating;
         this.specialFeatures = specialFeatures;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setReleaseYear(Integer releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public void setRentalDuration(Short rentalDuration) {
+        this.rentalDuration = rentalDuration;
+    }
+
+    public void setRentalRate(BigDecimal rentalRate) {
+        this.rentalRate = rentalRate;
+    }
+
+    public void setLength(Integer length) {
+        this.length = length;
+    }
+
+    public void setReplacementCost(BigDecimal replacementCost) {
+        this.replacementCost = replacementCost;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public void setSpecialFeatures(String specialFeatures) {
+        this.specialFeatures = specialFeatures;
+    }
+
+    public void setLastUpdate(Instant lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

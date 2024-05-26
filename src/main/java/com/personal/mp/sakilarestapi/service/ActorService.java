@@ -24,16 +24,16 @@ public class ActorService {
         return actorRepository.findAll();
     }
 
-    public Optional<Actor> getActorById(int actor_id) {
-        return actorRepository.findById(actor_id);
+    public Optional<Actor> getActorById(int actorId) {
+        return actorRepository.findById(actorId);
     }
 
     public Actor saveActor(Actor actor) {
         return actorRepository.save(actor);
     }
 
-    public Actor updateActor(int id, Actor actorDetails) {
-        return actorRepository.findById(id).map(actor -> {
+    public Actor updateActor(int actorId, Actor actorDetails) {
+        return actorRepository.findById(actorId).map(actor -> {
             actor.setFirstName(actorDetails.getFirstName());
             actor.setLastName(actorDetails.getLastName());
             actor.setLastUpdate(Instant.now());
@@ -41,8 +41,8 @@ public class ActorService {
         }).orElseThrow(() -> new ResourceNotFoundException("Actor not found"));
     }
 
-    public boolean deleteActor(int id) {
-        return actorRepository.findById(id).map(actor -> {
+    public boolean deleteActor(int actorId) {
+        return actorRepository.findById(actorId).map(actor -> {
             actorRepository.delete(actor);
             return true;
         }).orElse(false);
