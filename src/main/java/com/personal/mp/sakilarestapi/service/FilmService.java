@@ -1,6 +1,7 @@
 package com.personal.mp.sakilarestapi.service;
 
 import com.personal.mp.sakilarestapi.dto.FilmDto;
+import com.personal.mp.sakilarestapi.exception.ResourceNotFoundException;
 import com.personal.mp.sakilarestapi.mapper.FilmMapper;
 import com.personal.mp.sakilarestapi.model.Film;
 import com.personal.mp.sakilarestapi.repository.FilmRepository;
@@ -42,9 +43,28 @@ public class FilmService {
         return filmMapper.toDTO(filmRepository.save(film));
     }
 
-//    public Film updateFilm(int filmId, Film filmDetails)  {
-//
-//
-//    }
+    public FilmDto updateFilm(int filmId, FilmDto filmDetails) {
+        return filmRepository.findById(filmId).map(film -> {
+            film.setLength(filmDetails.getLength());
+            film.setRating(filmDetails.getRating());
+            film.setTitle(filmDetails.getTitle());
+            film.setDescription(filmDetails.getDescription());
+            film.setReleaseYear(filmDetails.getReleaseYear());
+            film.setRentalDuration(filmDetails.getRentalDuration());
+            film.setRentalRate(filmDetails.getRentalRate());
+            film.setSpecialFeatures(filmDetails.getSpecialFeatures());
+            film.setReplacementCost(filmDetails.getReplacementCost());
+            film.setLastUpdate(filmDetails.getLastUpdate());
+
+            return filmMapper.toDTO(filmRepository.save(film));
+        }).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
+    }
+
+    public boolean deleteFilm(int filmId) {
+        return filmRepository.findById(filmId).map(film -> {
+            filmRepository.delete(film);
+            return true;
+        }).orElse(false);
+    }
 
 }
